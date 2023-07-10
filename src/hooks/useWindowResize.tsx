@@ -1,0 +1,51 @@
+import { useState, useEffect, useCallback } from 'react';
+
+// Define the shape of our windowSize state
+interface WindowSize {
+  width: number;
+  height: number;
+}
+
+type Callback = (size: WindowSize) => void;
+
+const useWindowSize = (callback:Callback = () => {}): WindowSize => {
+  // Initialize state with current window dimensions
+  const [windowSize, setWindowSize] = useState<WindowSize>({
+    width: 0,
+    height: 0,
+  });
+
+  const stableCallback = useCallback(callback, []);
+
+
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      const newSize = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+      
+      setWindowSize(newSize);
+
+      // Call the callback with the new size
+      if (stableCallback) {
+        stableCallback(newSize);
+      }
+    }
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Call handler right away so state gets updated with initial window dimensions
+    handleResize();
+    
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, [stableCallback]); // Empty array ensures that effect is only run on mount and unmount
+
+  return windowSize;
+}
+
+export default useWindowSize;

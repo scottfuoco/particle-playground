@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
+  "compilerOptions": {
+    "composite": false,
+    "incremental": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "useUnknownInCatchVariables": true,
+    "inlineSources": false,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "preserveWatchOutput": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "tsBuildInfoFile": ".tsbuildinfo",
+    "baseUrl": ".",
+    "target": "ESNext",
+    "noUncheckedIndexedAccess": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "watchOptions": {
+    "excludeDirectories": [
+      "**/node_modules",
+      "**/.yarn",
+      "**/.cache",
+      "**/.next",
+      "**/.turbo"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules",
+    "**/.*",
+    "**/.yarn",
+    "**/.cache",
+    "**/.next",
+    "**/.turbo",
+    "**/dist"
+  ],
+  "resolve": {
+    "extensions": [".ts", ".tsx", ".js", ".jsx", ".json", ".d.ts"]
+  }
+}
