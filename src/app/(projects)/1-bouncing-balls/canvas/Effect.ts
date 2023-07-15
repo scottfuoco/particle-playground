@@ -20,7 +20,32 @@ export class Effect {
     }
   }
 
+  draw(context: CanvasRenderingContext2D) {
+    context.clearRect(0, 0, this.width, this.height);
+    this.backgroundSetup(context);
+    this.handleParticles(context);
+  }
+
+  backgroundSetup(context: CanvasRenderingContext2D) {
+    context.fillStyle = "black";
+    context.fillRect(0, 0, this.width, this.height);
+  }
+
   handleParticles(context: CanvasRenderingContext2D) {
+    // Set gradient colour for balls
+
+    const gradient = context.createLinearGradient(
+      0,
+      0,
+      context.canvas.width,
+      context.canvas.height
+    );
+
+    gradient.addColorStop(0, "white");
+    gradient.addColorStop(0.5, "magenta");
+    gradient.addColorStop(1, "blue");
+    context.fillStyle = gradient;
+
     this.particles.forEach((particle) => {
       particle.draw(context);
       particle.update();

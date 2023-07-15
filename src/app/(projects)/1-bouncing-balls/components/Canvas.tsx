@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useRef } from "react";
-import { Effect } from "../app/(projects)/1-bouncing-balls/canvas/Effect";
+import { Effect } from "../canvas/Effect";
 import useWindowSize from "@/hooks/useWindowResize";
 
 type CanvasProps = React.DetailedHTMLProps<
@@ -23,14 +23,10 @@ const Canvas = forwardRef<HTMLCanvasElement, CanvasProps>((props, ref) => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) {
-      return;
-    }
+    if (!canvas) return;
 
     const context = canvas.getContext("2d");
-    if (!context) {
-      return;
-    }
+    if (!context) return;
 
     // Only create the Effect instance if it doesn't already exist
     if (!effectRef.current) {
@@ -42,7 +38,9 @@ const Canvas = forwardRef<HTMLCanvasElement, CanvasProps>((props, ref) => {
         if (!context) return;
         context.clearRect(0, 0, sizeRef.current.width, sizeRef.current.height);
 
-        effectRef.current.handleParticles(context);
+        // Draw particles
+        effectRef.current.draw(context);
+
         requestAnimationFrame(animate);
       }
 

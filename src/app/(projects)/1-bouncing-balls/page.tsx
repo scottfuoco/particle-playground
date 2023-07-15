@@ -1,6 +1,6 @@
 "use client";
 
-import Canvas from "../../../components/Canvas";
+import Canvas from "./components/Canvas";
 import Head from "next/head";
 import { useRef } from "react";
 
