@@ -1,5 +1,5 @@
 import React, { forwardRef, useEffect, useRef } from "react";
-import { Effect } from "../canvas/Effect";
+import { Effect } from "./Effect";
 import useWindowSize from "@/hooks/useWindowResize";
 
 type CanvasProps = React.DetailedHTMLProps<
