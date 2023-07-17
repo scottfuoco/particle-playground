@@ -7,13 +7,6 @@ export class Effect {
   public width: number;
   public height: number;
 
-  public mouse: {
-    x: number;
-    y: number;
-    pressed: boolean;
-    radius: number;
-  };
-
   constructor(
     public canvas: HTMLCanvasElement,
     public context: CanvasRenderingContext2D
@@ -24,34 +17,12 @@ export class Effect {
     this.height = window.innerHeight;
     this.createParticles();
 
-    this.mouse = {
-      x: 0,
-      y: 0,
-      pressed: false,
-      radius: 150,
-    };
-
     window.addEventListener("resize", () => {
       this.resize({
         width: window.innerWidth,
         height: window.innerHeight,
         context: this.context,
       });
-    });
-
-    window.addEventListener("mousemove", (event: MouseEvent) => {
-      if (this.mouse.pressed) {
-        this.mouse.x = event.x;
-        this.mouse.y = event.y;
-      }
-    });
-    window.addEventListener("mousedown", (event: MouseEvent) => {
-      this.mouse.pressed = true;
-      this.mouse.x = event.x;
-      this.mouse.y = event.y;
-    });
-    window.addEventListener("mouseup", () => {
-      this.mouse.pressed = false;
     });
   }
 
@@ -118,9 +89,5 @@ export class Effect {
     this.height = height;
 
     this.contextSetup(this.context);
-
-    this.particles.forEach((particle) => {
-      particle.reset();
-    });
   }
 }
